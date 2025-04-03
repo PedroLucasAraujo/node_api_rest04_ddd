@@ -1,3 +1,4 @@
+import { Either, left, right } from "@/core/either";
 import { AnswerCommentsRepository } from "../repositories/answer-comments-repository";
 
 interface DeleteAnswerCommentUseCaseRequest {
@@ -5,7 +6,7 @@ interface DeleteAnswerCommentUseCaseRequest {
   answerCommentId: string;
 }
 
-interface DeleteAnswerCommentUseCaseResponse {}
+type DeleteAnswerCommentUseCaseResponse = Either<string, {}>;
 
 export class DeleteAnswerCommentUseCase {
   constructor(private answersCommentsRepository: AnswerCommentsRepository) {}
@@ -17,7 +18,7 @@ export class DeleteAnswerCommentUseCase {
       await this.answersCommentsRepository.findById(answerCommentId);
 
     if (!answerComment) {
-      throw new Error("Answer not found.");
+      return left("Answer not found.");
     }
 
     if (answerComment.authorId.toString() !== authorId) {
@@ -26,6 +27,6 @@ export class DeleteAnswerCommentUseCase {
 
     await this.answersCommentsRepository.delete(answerComment);
 
-    return {};
+    return right({});
   }
 }
