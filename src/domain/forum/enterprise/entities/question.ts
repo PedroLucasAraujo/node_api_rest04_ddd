@@ -1,7 +1,7 @@
+import { AggregateRoot } from "@/core/entities/aggregate-root";
 import { Slug } from "./value-objects/slug";
-import { Entity } from "@/core/entities/entity";
-import type { UniqueEntityId } from "@/core/entities/unique-entity-id";
-import type { Optional } from "@/core/types/optional";
+import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { Optional } from "@/core/types/optional";
 import dayjs from "dayjs";
 
 export interface QuestionProps {
@@ -13,7 +13,8 @@ export interface QuestionProps {
   createdAt: Date;
   updatedAt?: Date;
 }
-export class Question extends Entity<QuestionProps> {
+
+export class Question extends AggregateRoot<QuestionProps> {
   get authorId() {
     return this.props.authorId;
   }
@@ -57,6 +58,7 @@ export class Question extends Entity<QuestionProps> {
   set title(title: string) {
     this.props.title = title;
     this.props.slug = Slug.createFromText(title);
+
     this.touch();
   }
 
@@ -82,6 +84,7 @@ export class Question extends Entity<QuestionProps> {
       },
       id
     );
+
     return question;
   }
 }
