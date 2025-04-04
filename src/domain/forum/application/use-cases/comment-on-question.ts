@@ -1,5 +1,5 @@
 import { QuestionsRepository } from "../repositories/questions-repository";
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { QuestionComment } from "@/domain/forum/enterprise/entities/question-comment";
 import { QuestionCommentsRepository } from "@/domain/forum/application/repositories/question-comments-repository";
 import { Either, left, right } from "@/core/either";
@@ -36,8 +36,8 @@ export class CommentOnQuestionUseCase {
     }
 
     const questionComment = QuestionComment.create({
-      authorId: new UniqueEntityId(authorId),
-      questionId: new UniqueEntityId(questionId),
+      authorId: new UniqueEntityID(authorId),
+      questionId: new UniqueEntityID(questionId),
       content,
     });
 

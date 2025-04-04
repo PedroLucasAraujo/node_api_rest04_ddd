@@ -6,7 +6,7 @@ import { QuestionsRepository } from "../repositories/questions-repository";
 import { QuestionAttachmentsRepository } from "@/domain/forum/application/repositories/question-attachments-repository";
 import { QuestionAttachmentList } from "@/domain/forum/enterprise/entities/question-attachment-list";
 import { QuestionAttachment } from "@/domain/forum/enterprise/entities/question-attachment";
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 
 interface EditQuestionUseCaseRequest {
   authorId: string;
@@ -55,7 +55,7 @@ export class EditQuestionUseCase {
 
     const questionAttachments = attachmentsIds.map((attachmentId) => {
       return QuestionAttachment.create({
-        attachmentId: new UniqueEntityId(attachmentId),
+        attachmentId: new UniqueEntityID(attachmentId),
         questionId: question.id,
       });
     });

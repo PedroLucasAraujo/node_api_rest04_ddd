@@ -1,4 +1,4 @@
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { AnswerQuestionUseCase } from "@/domain/forum/application/use-cases/answer-question";
 import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachments-repository";
 import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository";
@@ -32,8 +32,8 @@ describe("Create Answer", () => {
     ).toHaveLength(2);
     expect(inMemoryAnswersRepository.items[0].attachments.currentItems).toEqual(
       [
-        expect.objectContaining({ attachmentId: new UniqueEntityId("1") }),
-        expect.objectContaining({ attachmentId: new UniqueEntityId("2") }),
+        expect.objectContaining({ attachmentId: new UniqueEntityID("1") }),
+        expect.objectContaining({ attachmentId: new UniqueEntityID("2") }),
       ]
     );
   });
