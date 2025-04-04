@@ -12,9 +12,12 @@ let sut: EditQuestionUseCase;
 
 describe("Edit Question", () => {
   beforeEach(() => {
-    inMemoryQuestionsRepository = new InMemoryQuestionsRepository();
     inMemoryQuestionAttachmentsRepository =
       new InMemoryQuestionAttachmentsRepository();
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
+      inMemoryQuestionAttachmentsRepository
+    );
+
     sut = new EditQuestionUseCase(
       inMemoryQuestionsRepository,
       inMemoryQuestionAttachmentsRepository
@@ -54,6 +57,7 @@ describe("Edit Question", () => {
       title: "Pergunta teste",
       content: "Conteúdo teste",
     });
+
     expect(
       inMemoryQuestionsRepository.items[0].attachments.currentItems
     ).toHaveLength(2);
